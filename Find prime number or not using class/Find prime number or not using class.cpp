@@ -4,55 +4,58 @@ class number
 {
 public:
 	number(void);
-	number(int num, int p);
+	number(int n);
+	int set_data(int num);
+    void check_prime_or_not();
+
 	~number();
-	void set_data(int a)
-	{
-		n = a;
-	}
-	void display()
-	{
-		if (prime == 1)
-		{
-			cout << "Prime";
-		}
-		else
-		{
-			cout << "Not prime";
-		}
-	}
 
 private:
-	int n;
-	int prime;
-	void check_prime()
-	{
-		prime = 1;
-		if (n <= 1)
-		{
-			prime = 0;
-		}
-		for (int i = 2; i < n; i++)
-		{
-			if (n % i == 0)
-			{
-				prime = 0;
-				break;
-			}
-		}
-	}
+	int x;
 };
 
 number::number(void)
 {
-	n = 0;
-	prime = 0;
+	x = 0;
 }
 
-number::number(int num, int p)
+number::number(int n)
 {
-	n = num;
-	prime = p;
+	x = n;
+}
+
+int number::set_data(int num)
+{
+	return x = num;
+}
+
+void number::check_prime_or_not()
+{
+    int flag = 0;
+    for (int i = 2; i < x/2; i++)
+    {
+        if (x % 2 == 0)
+        {
+            flag = 1;
+            break;
+        }
+    }
+    if (x == 0)
+    {
+        cout << "0 is neither prime nor composite ";
+    }
+    else if (x == 1)
+    {
+        cout << "1 is neither prime nor composite ";
+    }
+    else if (flag == 0)
+    {
+        cout << x << " is a prime number";
+    }
+    else
+    {
+        cout << x << " is not a prime number";
+    }
 }
 
 number::~number()
@@ -61,11 +64,11 @@ number::~number()
 
 int main()
 {
-	int data;
-	cout << "Enter a number : ";
-	cin >> data;
-	number object;
-	object.set_data(data);
-	object.display();
-	return 0;
+    int data;
+    number object;
+    cout << "Enter a numner to check prime or not : ";
+    cin >> data;
+    object.set_data(data);
+    object.check_prime_or_not();
+    return 0;
 }
